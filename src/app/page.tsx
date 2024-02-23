@@ -1,14 +1,5 @@
 import Image from 'next/image';
-import { Movies } from './types';
-
-const getMovies = async (): Promise<Movies> => {
-  const res = await fetch(
-    'https://api.themoviedb.org/3/movie/popular?api_key=508a25f671b0a06c9ab8aec35944749e',
-    { next: { revalidate: 3600 } }
-  );
-
-  return res.json();
-};
+import { getMovies } from './lib';
 
 export default async function Home() {
   const movies = await getMovies();
